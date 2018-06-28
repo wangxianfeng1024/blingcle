@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BmusictcMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Bmusictc">
+    <id column="musicid" jdbcType="BIGINT" property="musicid" />
+    <result column="musicname" jdbcType="VARCHAR" property="musicname" />
+    <result column="musicurl" jdbcType="VARCHAR" property="musicurl" />
+    <result column="creater" jdbcType="BIGINT" property="creater" />
+    <result column="musicsource" jdbcType="VARCHAR" property="musicsource" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+    <result column="musiclistencount" jdbcType="BIGINT" property="musiclistencount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    musicid, musicname, musicurl, creater, musicsource, createtime, isvalid, musiclistencount
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_music_tc
+    where musicid = #{musicid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_music_tc
+    where musicid = #{musicid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Bmusictc">
+    insert into b_music_tc (musicid, musicname, musicurl, 
+      creater, musicsource, createtime, 
+      isvalid, musiclistencount)
+    values (#{musicid,jdbcType=BIGINT}, #{musicname,jdbcType=VARCHAR}, #{musicurl,jdbcType=VARCHAR}, 
+      #{creater,jdbcType=BIGINT}, #{musicsource,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{isvalid,jdbcType=BIT}, #{musiclistencount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Bmusictc">
+    insert into b_music_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="musicid != null">
+        musicid,
+      </if>
+      <if test="musicname != null">
+        musicname,
+      </if>
+      <if test="musicurl != null">
+        musicurl,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="musicsource != null">
+        musicsource,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="musiclistencount != null">
+        musiclistencount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="musicid != null">
+        #{musicid,jdbcType=BIGINT},
+      </if>
+      <if test="musicname != null">
+        #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="musicurl != null">
+        #{musicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="musicsource != null">
+        #{musicsource,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="musiclistencount != null">
+        #{musiclistencount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Bmusictc">
+    update b_music_tc
+    <set>
+      <if test="musicname != null">
+        musicname = #{musicname,jdbcType=VARCHAR},
+      </if>
+      <if test="musicurl != null">
+        musicurl = #{musicurl,jdbcType=VARCHAR},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="musicsource != null">
+        musicsource = #{musicsource,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="musiclistencount != null">
+        musiclistencount = #{musiclistencount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where musicid = #{musicid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Bmusictc">
+    update b_music_tc
+    set musicname = #{musicname,jdbcType=VARCHAR},
+      musicurl = #{musicurl,jdbcType=VARCHAR},
+      creater = #{creater,jdbcType=BIGINT},
+      musicsource = #{musicsource,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=BIT},
+      musiclistencount = #{musiclistencount,jdbcType=BIGINT}
+    where musicid = #{musicid,jdbcType=BIGINT}
+  </update>
+</mapper>

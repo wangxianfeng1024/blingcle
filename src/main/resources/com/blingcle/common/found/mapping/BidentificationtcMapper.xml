@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BidentificationtcMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Bidentificationtc">
+    <result column="loginid" jdbcType="VARCHAR" property="loginid" />
+    <result column="logintype" jdbcType="VARCHAR" property="logintype" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Bidentificationtc">
+    insert into b_identification_tc (loginid, logintype, userid, 
+      createtime)
+    values (#{loginid,jdbcType=VARCHAR}, #{logintype,jdbcType=VARCHAR}, #{userid,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Bidentificationtc">
+    insert into b_identification_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="loginid != null">
+        loginid,
+      </if>
+      <if test="logintype != null">
+        logintype,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="loginid != null">
+        #{loginid,jdbcType=VARCHAR},
+      </if>
+      <if test="logintype != null">
+        #{logintype,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

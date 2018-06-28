@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BusertcMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Busertc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="lastupdate" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="isrealname" jdbcType="BIT" property="isrealname" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="fristlogintime" jdbcType="TIMESTAMP" property="fristlogintime" />
+    <result column="lastlogintime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="lastloginfacility" jdbcType="VARCHAR" property="lastloginfacility" />
+    <result column="isprime" jdbcType="BIT" property="isprime" />
+  </resultMap>
+  <resultMap id="basBaseResultMap" type="com.blingcle.common.found.pojo.Busertc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="lastupdate" jdbcType="TIMESTAMP" property="lastupdate" />
+    <result column="isrealname" jdbcType="BIT" property="isrealname" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="loginname" jdbcType="VARCHAR" property="loginname" />
+    <result column="fristlogintime" jdbcType="TIMESTAMP" property="fristlogintime" />
+    <result column="lastlogintime" jdbcType="TIMESTAMP" property="lastlogintime" />
+    <result column="lastloginfacility" jdbcType="VARCHAR" property="lastloginfacility" />
+    <result column="isprime" jdbcType="BIT" property="isprime" />
+    <collection property="buserdetailtc" ofType="com.blingcle.common.found.pojo.Buserdetailtc">
+      <id column="userid" jdbcType="BIGINT" property="userid" />
+      <result column="sex" jdbcType="BIT" property="sex" />
+      <result column="signature" jdbcType="VARCHAR" property="signature" />
+      <result column="age" jdbcType="INTEGER" property="age" />
+      <result column="constellation" jdbcType="VARCHAR" property="constellation" />
+      <result column="provinces" jdbcType="VARCHAR" property="provinces" />
+      <result column="cities" jdbcType="VARCHAR" property="cities" />
+      <result column="county" jdbcType="VARCHAR" property="county" />
+      <result column="town" jdbcType="VARCHAR" property="town" />
+      <result column="adderss" jdbcType="VARCHAR" property="adderss" />
+      <result column="level" jdbcType="VARCHAR" property="level" />
+      <result column="headportrait" jdbcType="VARCHAR" property="headportrait" />
+      <result column="identity" jdbcType="VARCHAR" property="identity" />
+      <result column="integral" jdbcType="INTEGER" property="integral" />
+      <result column="pictureframe" jdbcType="VARCHAR" property="pictureframe" />
+      <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+      <result column="realname" jdbcType="VARCHAR" property="realname" />
+    </collection>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, password, phone, lastupdate, isrealname, status, createDate, loginname, 
+    fristlogintime, lastlogintime, lastloginfacility, isprime
+  </sql>
+  <sql id="Column_List">
+    id, name, password, phone, lastupdate, isrealname, status, createDate, loginname, fristlogintime,
+    lastlogintime, lastloginfacility, isprime, userid, sex, signature, age, constellation, provinces, cities, county, town, adderss,
+    level, headportrait, identity, integral,pictureframe, birthday, realname
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_user_tc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_user_tc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.vo.BusertcVo" useGeneratedKeys="true" keyProperty="id">
+    insert into b_user_tc (id, name, password, 
+      phone, lastupdate, isrealname, 
+      status, createDate, loginname, 
+      fristlogintime, lastlogintime, lastloginfacility, 
+      isprime)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{lastupdate,jdbcType=TIMESTAMP}, #{isrealname,jdbcType=BIT}, 
+      #{status,jdbcType=INTEGER}, #{createdate,jdbcType=TIMESTAMP}, #{loginname,jdbcType=VARCHAR}, 
+      #{fristlogintime,jdbcType=TIMESTAMP}, #{lastlogintime,jdbcType=TIMESTAMP}, #{lastloginfacility,jdbcType=VARCHAR}, 
+      #{isprime,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Busertc">
+    insert into b_user_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="phone != null">
+        phone,
+      </if>
+      <if test="lastupdate != null">
+        lastupdate,
+      </if>
+      <if test="isrealname != null">
+        isrealname,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createdate != null">
+        createDate,
+      </if>
+      <if test="loginname != null">
+        loginname,
+      </if>
+      <if test="fristlogintime != null">
+        fristlogintime,
+      </if>
+      <if test="lastlogintime != null">
+        lastlogintime,
+      </if>
+      <if test="lastloginfacility != null">
+        lastloginfacility,
+      </if>
+      <if test="isprime != null">
+        isprime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null">
+        #{lastupdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isrealname != null">
+        #{isrealname,jdbcType=BIT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginname != null">
+        #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="fristlogintime != null">
+        #{fristlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastlogintime != null">
+        #{lastlogintime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastloginfacility != null">
+        #{lastloginfacility,jdbcType=VARCHAR},
+      </if>
+      <if test="isprime != null">
+        #{isprime,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Busertc">
+    update b_user_tc
+    <set>
+      <if test="name != null and '' != name">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null and '' != password">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and '' != phone">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="lastupdate != null and '' != lastupdate">
+        lastupdate = #{lastupdate,jdbcType=DATE},
+      </if>
+      <if test="isrealname != null and '' != isrealname">
+        isrealname = #{isrealname,jdbcType=BIT},
+      </if>
+      <if test="status != null and '' != status">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdate != nulll and '' != createdate">
+        createDate = #{createdate,jdbcType=DATE},
+      </if>
+      <if test="loginname != nulll and '' != loginname">
+        loginname = #{loginname,jdbcType=VARCHAR},
+      </if>
+      <if test="fristlogintime != null and '' != fristlogintime">
+        fristlogintime = #{fristlogintime,jdbcType=DATE},
+      </if>
+      <if test="lastlogintime != null and '' != lastlogintime">
+        lastlogintime = #{lastlogintime,jdbcType=DATE},
+      </if>
+      <if test="lastloginfacility != null and '' != lastloginfacility">
+        lastloginfacility = #{lastloginfacility,jdbcType=VARCHAR},
+      </if>
+      <if test="isprime != null and '' != isprime">
+        isprime = #{isprime,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Busertc">
+    update b_user_tc
+    set name = #{name,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+      isrealname = #{isrealname,jdbcType=BIT},
+      status = #{status,jdbcType=INTEGER},
+      createDate = #{createdate,jdbcType=TIMESTAMP},
+      loginname = #{loginname,jdbcType=VARCHAR},
+      fristlogintime = #{fristlogintime,jdbcType=TIMESTAMP},
+      lastlogintime = #{lastlogintime,jdbcType=TIMESTAMP},
+      lastloginfacility = #{lastloginfacility,jdbcType=VARCHAR},
+      isprime = #{isprime,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="findbyphone" parameterType="com.blingcle.common.found.vo.BusertcVo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_user_tc
+    where phone = #{phone,jdbcType=VARCHAR}
+  </select>
+  <select id="findbyloginname" parameterType="com.blingcle.common.found.vo.BusertcVo" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_user_tc
+    where loginname = #{loginname,jdbcType=VARCHAR}
+    and password=#{password,jdbcType=VARCHAR}
+  </select>
+
+  <select id="queryBusertcDatail" parameterType="java.lang.Long" resultMap="basBaseResultMap">
+    select
+    <include refid="Column_List" />
+    from b_user_tc u
+    LEFT JOIN b_userdetail_tc d on u.id=d.userid
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="findAttention" parameterType="java.lang.Long" resultMap="basBaseResultMap">
+    SELECT
+   id, name, password, phone, lastupdate, isrealname, status, createDate, loginname, fristlogintime,
+    lastlogintime, lastloginfacility, isprime, f.userid, sex, signature, age, constellation, provinces, cities, county, town, adderss,
+    level, headportrait, identity, integral,pictureframe, birthday, realname
+    FROM
+    b_userfriend_td f
+    LEFT JOIN b_user_tc u ON f.userid = u.id
+    LEFT JOIN b_userdetail_tc d ON f.userid = d.userid
+    WHERE 	f.userid = #{id,jdbcType=BIGINT}
+  </select>
+
+  <select id="findFans" parameterType="java.lang.Long" resultMap="basBaseResultMap">
+    SELECT
+      id, name, password, phone, lastupdate, isrealname, status, createDate, loginname, fristlogintime,
+    lastlogintime, lastloginfacility, isprime, f.userid, sex, signature, age, constellation, provinces, cities, county, town, adderss,
+    level, headportrait, identity, integral,pictureframe, birthday, realname
+    FROM
+    b_userfriend_td f
+    LEFT JOIN b_user_tc u ON f.userid = u.id
+    LEFT JOIN b_userdetail_tc d ON f.userid = d.userid
+    WHERE 	f.fansid = #{id,jdbcType=BIGINT}
+  </select>
+</mapper>

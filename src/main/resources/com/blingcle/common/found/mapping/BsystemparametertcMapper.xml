@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BsystemparametertcMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Bsystemparametertc">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="value" jdbcType="VARCHAR" property="value" />
+    <result column="illustrate" jdbcType="VARCHAR" property="illustrate" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="reserve" jdbcType="VARCHAR" property="reserve" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, name, value, illustrate, createtime, reserve
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_systemparameter_tc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_systemparameter_tc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Bsystemparametertc">
+    insert into b_systemparameter_tc (id, name, value, 
+      illustrate, createtime, reserve
+      )
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{illustrate,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, #{reserve,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Bsystemparametertc">
+    insert into b_systemparameter_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="illustrate != null">
+        illustrate,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="reserve != null">
+        reserve,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="illustrate != null">
+        #{illustrate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve != null">
+        #{reserve,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Bsystemparametertc">
+    update b_systemparameter_tc
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="illustrate != null">
+        illustrate = #{illustrate,jdbcType=VARCHAR},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reserve != null">
+        reserve = #{reserve,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Bsystemparametertc">
+    update b_systemparameter_tc
+    set name = #{name,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      illustrate = #{illustrate,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      reserve = #{reserve,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

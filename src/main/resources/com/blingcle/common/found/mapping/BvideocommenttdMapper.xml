@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BvideocommenttdMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Bvideocommenttd">
+    <result column="videoid" jdbcType="BIGINT" property="videoid" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+    <result column="id" jdbcType="BIGINT" property="id" />
+    <result column="parentid" jdbcType="BIGINT" property="parentid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Bvideocommenttd">
+    insert into b_videocomment_td (videoid, userid, content, 
+      isvalid, id, parentid, createtime
+      )
+    values (#{videoid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{content,jdbcType=VARCHAR}, 
+      #{isvalid,jdbcType=BIT}, #{id,jdbcType=BIGINT}, #{parentid,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Bvideocommenttd">
+    insert into b_videocomment_td
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="videoid != null">
+        videoid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+      <if test="parentid != null">
+        parentid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="videoid != null">
+        #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="parentid != null">
+        #{parentid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

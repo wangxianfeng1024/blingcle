@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    ## 自定义配置
+
+  session:
+     store-type: jdbc
+     jdbc:
+       initializer:
+         enabled: true
+##服务器配置
+server:
+  context-path: /blingcle
+  port: 8082
+  session:
+    timeout: 1800
+mybatis:
+  type-aliases-package: com.blingcle.common.found.pojo
+  config-location: classpath:mybatis-spring.xml
+  mapperLocations: classpath:com/blingcle/common/found/mapping/*Mapper.xml
+
+
+
+

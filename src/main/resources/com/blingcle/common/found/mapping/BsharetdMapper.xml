@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.BsharetdMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Bsharetd">
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="videoid" jdbcType="BIGINT" property="videoid" />
+    <result column="sharetime" jdbcType="TIMESTAMP" property="sharetime" />
+    <result column="sharetype" jdbcType="INTEGER" property="sharetype" />
+  </resultMap>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Bsharetd">
+    insert into b_share_td (userid, videoid, sharetime, 
+      sharetype)
+    values (#{userid,jdbcType=BIGINT}, #{videoid,jdbcType=BIGINT}, #{sharetime,jdbcType=TIMESTAMP}, 
+      #{sharetype,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Bsharetd">
+    insert into b_share_td
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="videoid != null">
+        videoid,
+      </if>
+      <if test="sharetime != null">
+        sharetime,
+      </if>
+      <if test="sharetype != null">
+        sharetype,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="videoid != null">
+        #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="sharetime != null">
+        #{sharetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sharetype != null">
+        #{sharetype,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
