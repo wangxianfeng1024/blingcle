@@ -30,7 +30,7 @@ public class BcircletcController {
     private Bcircletcservice bcircletcservice;
 
     @PostMapping(value = "/queryBcircle")
-    public Map<String, Object> queryBcircle(@RequestBody  BaseList<Bcircletc> baseList) throws BusinessException {
+    public Map<String, Object> queryBcircle(@RequestBody BaseList<Bcircletc> baseList) throws BusinessException {
         logger.info("查询圈子Controller");
         Map<String, Object> resultMap = new HashMap<String, Object>();
         List<Bcircletc> bcircletcs = bcircletcservice.queryall(baseList.getId());
