@@ -1,7 +1,9 @@
 package com.blingcle.common.found.mapper;
 
 import com.blingcle.common.found.pojo.Userfriend;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UserfriendMapper {
     int deleteByPrimaryKey(Long id);
 

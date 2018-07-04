@@ -1,7 +1,9 @@
 package com.blingcle.common.found.mapper;
 
 import com.blingcle.common.found.pojo.Usercircle;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface UsercircleMapper {
     int deleteByPrimaryKey(Long id);
 

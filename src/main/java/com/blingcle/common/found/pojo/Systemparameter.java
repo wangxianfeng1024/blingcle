@@ -1,7 +1,9 @@
 package com.blingcle.common.found.pojo;
 
-import java.util.Date;
+import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
+@Mapper
 public class Systemparameter {
     private Long id;
 

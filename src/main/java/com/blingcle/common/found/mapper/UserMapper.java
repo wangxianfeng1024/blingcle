@@ -2,9 +2,11 @@ package com.blingcle.common.found.mapper;
 
 import com.blingcle.common.found.buser.vo.UserVo;
 import com.blingcle.common.found.pojo.User;
+import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
+@Mapper
 public interface UserMapper {
     int deleteByPrimaryKey(Long id);
 

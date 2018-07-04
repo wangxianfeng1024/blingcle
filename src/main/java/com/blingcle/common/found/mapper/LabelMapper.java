@@ -1,7 +1,9 @@
 package com.blingcle.common.found.mapper;
 
 import com.blingcle.common.found.pojo.Label;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface LabelMapper {
     int deleteByPrimaryKey(Long labelid);
 
