@@ -216,4 +216,3 @@ public class VideoVo {
         this.circleid = circleid;
     }
 }
-}
