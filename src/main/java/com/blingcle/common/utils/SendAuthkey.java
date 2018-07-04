@@ -5,8 +5,8 @@ import java.util.Random;
 /**
  * Created by 王显锋 on 2018/6/22.
  */
+@SuppressWarnings("all")
 public class SendAuthkey {
-
 
     public static String getFourRandom() {
         Random random = new Random();
@@ -20,12 +20,8 @@ public class SendAuthkey {
     }
 
 
-
-
-
-
     public static void main(String[] args) {
-        String s= getFourRandom();
+        String s = getFourRandom();
         System.out.println(s);
     }
 }

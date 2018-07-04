@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.CircleMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Circle">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="circlename" jdbcType="VARCHAR" property="circlename" />
+    <result column="circletype" jdbcType="VARCHAR" property="circletype" />
+    <result column="labels" jdbcType="VARCHAR" property="labels" />
+    <result column="grade" jdbcType="BIGINT" property="grade" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="creater" jdbcType="BIGINT" property="creater" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="introduction" jdbcType="INTEGER" property="introduction" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="modificy" jdbcType="VARCHAR" property="modificy" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="badge" jdbcType="VARCHAR" property="badge" />
+    <result column="permission" jdbcType="VARCHAR" property="permission" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, circlename, circletype, labels, grade, createtime, creater, status, introduction, 
+    updateby, updatetime, modificy, isvalid, version, badge, permission, integral
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_circle_tc
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_circle_tc
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Circle">
+    insert into b_circle_tc (id, circlename, circletype, 
+      labels, grade, createtime, 
+      creater, status, introduction, 
+      updateby, updatetime, modificy, 
+      isvalid, version, badge, 
+      permission, integral)
+    values (#{id,jdbcType=BIGINT}, #{circlename,jdbcType=VARCHAR}, #{circletype,jdbcType=VARCHAR}, 
+      #{labels,jdbcType=VARCHAR}, #{grade,jdbcType=BIGINT}, #{createtime,jdbcType=TIMESTAMP}, 
+      #{creater,jdbcType=BIGINT}, #{status,jdbcType=INTEGER}, #{introduction,jdbcType=INTEGER}, 
+      #{updateby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{modificy,jdbcType=VARCHAR}, 
+      #{isvalid,jdbcType=BIT}, #{version,jdbcType=INTEGER}, #{badge,jdbcType=VARCHAR}, 
+      #{permission,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Circle">
+    insert into b_circle_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="circlename != null">
+        circlename,
+      </if>
+      <if test="circletype != null">
+        circletype,
+      </if>
+      <if test="labels != null">
+        labels,
+      </if>
+      <if test="grade != null">
+        grade,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="creater != null">
+        creater,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="introduction != null">
+        introduction,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="modificy != null">
+        modificy,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="badge != null">
+        badge,
+      </if>
+      <if test="permission != null">
+        permission,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="circlename != null">
+        #{circlename,jdbcType=VARCHAR},
+      </if>
+      <if test="circletype != null">
+        #{circletype,jdbcType=VARCHAR},
+      </if>
+      <if test="labels != null">
+        #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        #{introduction,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        #{modificy,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="badge != null">
+        #{badge,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Circle">
+    update b_circle_tc
+    <set>
+      <if test="circlename != null">
+        circlename = #{circlename,jdbcType=VARCHAR},
+      </if>
+      <if test="circletype != null">
+        circletype = #{circletype,jdbcType=VARCHAR},
+      </if>
+      <if test="labels != null">
+        labels = #{labels,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creater != null">
+        creater = #{creater,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="introduction != null">
+        introduction = #{introduction,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        modificy = #{modificy,jdbcType=VARCHAR},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="badge != null">
+        badge = #{badge,jdbcType=VARCHAR},
+      </if>
+      <if test="permission != null">
+        permission = #{permission,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Circle">
+    update b_circle_tc
+    set circlename = #{circlename,jdbcType=VARCHAR},
+      circletype = #{circletype,jdbcType=VARCHAR},
+      labels = #{labels,jdbcType=VARCHAR},
+      grade = #{grade,jdbcType=BIGINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      creater = #{creater,jdbcType=BIGINT},
+      status = #{status,jdbcType=INTEGER},
+      introduction = #{introduction,jdbcType=INTEGER},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      modificy = #{modificy,jdbcType=VARCHAR},
+      isvalid = #{isvalid,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      badge = #{badge,jdbcType=VARCHAR},
+      permission = #{permission,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

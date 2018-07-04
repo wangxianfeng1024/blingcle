@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.ShareMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Share">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="videoid" jdbcType="BIGINT" property="videoid" />
+    <result column="sharetime" jdbcType="TIMESTAMP" property="sharetime" />
+    <result column="sharetype" jdbcType="INTEGER" property="sharetype" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="modicify" jdbcType="VARCHAR" property="modicify" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userid, videoid, sharetime, sharetype, updateby, updatetime, modicify, version, 
+    isvalid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_share_td
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_share_td
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Share">
+    insert into b_share_td (id, userid, videoid, 
+      sharetime, sharetype, updateby, 
+      updatetime, modicify, version, 
+      isvalid)
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{videoid,jdbcType=BIGINT}, 
+      #{sharetime,jdbcType=TIMESTAMP}, #{sharetype,jdbcType=INTEGER}, #{updateby,jdbcType=VARCHAR}, 
+      #{updatetime,jdbcType=TIMESTAMP}, #{modicify,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{isvalid,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Share">
+    insert into b_share_td
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="videoid != null">
+        videoid,
+      </if>
+      <if test="sharetime != null">
+        sharetime,
+      </if>
+      <if test="sharetype != null">
+        sharetype,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="modicify != null">
+        modicify,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="videoid != null">
+        #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="sharetime != null">
+        #{sharetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sharetype != null">
+        #{sharetype,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modicify != null">
+        #{modicify,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Share">
+    update b_share_td
+    <set>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="videoid != null">
+        videoid = #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="sharetime != null">
+        sharetime = #{sharetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sharetype != null">
+        sharetype = #{sharetype,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modicify != null">
+        modicify = #{modicify,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Share">
+    update b_share_td
+    set userid = #{userid,jdbcType=BIGINT},
+      videoid = #{videoid,jdbcType=BIGINT},
+      sharetime = #{sharetime,jdbcType=TIMESTAMP},
+      sharetype = #{sharetype,jdbcType=INTEGER},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      modicify = #{modicify,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      isvalid = #{isvalid,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

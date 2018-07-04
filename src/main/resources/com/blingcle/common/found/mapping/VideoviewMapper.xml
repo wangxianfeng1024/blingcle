@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.VideoviewMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Videoview">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="videoid" jdbcType="BIGINT" property="videoid" />
+    <result column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="modificy" jdbcType="VARCHAR" property="modificy" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, videoid, userid, createtime, isvalid, version, updateby, updatetime, modificy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_videoview_td
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from b_videoview_td
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Videoview">
+    insert into b_videoview_td (id, videoid, userid, 
+      createtime, isvalid, version, 
+      updateby, updatetime, modificy
+      )
+    values (#{id,jdbcType=INTEGER}, #{videoid,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{isvalid,jdbcType=BIT}, #{version,jdbcType=INTEGER}, 
+      #{updateby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{modificy,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Videoview">
+    insert into b_videoview_td
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="videoid != null">
+        videoid,
+      </if>
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="createtime != null">
+        createtime,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="modificy != null">
+        modificy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="videoid != null">
+        #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        #{modificy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Videoview">
+    update b_videoview_td
+    <set>
+      <if test="videoid != null">
+        videoid = #{videoid,jdbcType=BIGINT},
+      </if>
+      <if test="userid != null">
+        userid = #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="createtime != null">
+        createtime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        modificy = #{modificy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Videoview">
+    update b_videoview_td
+    set videoid = #{videoid,jdbcType=BIGINT},
+      userid = #{userid,jdbcType=BIGINT},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=BIT},
+      version = #{version,jdbcType=INTEGER},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      modificy = #{modificy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.UserdetailMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Userdetail">
+    <id column="userid" jdbcType="BIGINT" property="userid" />
+    <result column="sex" jdbcType="BIT" property="sex" />
+    <result column="signature" jdbcType="VARCHAR" property="signature" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="constellation" jdbcType="VARCHAR" property="constellation" />
+    <result column="provinces" jdbcType="VARCHAR" property="provinces" />
+    <result column="cities" jdbcType="VARCHAR" property="cities" />
+    <result column="county" jdbcType="VARCHAR" property="county" />
+    <result column="town" jdbcType="VARCHAR" property="town" />
+    <result column="adderss" jdbcType="VARCHAR" property="adderss" />
+    <result column="level" jdbcType="VARCHAR" property="level" />
+    <result column="headportrait" jdbcType="VARCHAR" property="headportrait" />
+    <result column="identity" jdbcType="VARCHAR" property="identity" />
+    <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="pictureframe" jdbcType="VARCHAR" property="pictureframe" />
+    <result column="birthday" jdbcType="VARCHAR" property="birthday" />
+    <result column="realname" jdbcType="VARCHAR" property="realname" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    userid, sex, signature, age, constellation, provinces, cities, county, town, adderss, 
+    level, headportrait, identity, integral, pictureframe, birthday, realname, updatetime, 
+    version, updateby
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_userdetail_tc
+    where userid = #{userid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_userdetail_tc
+    where userid = #{userid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Userdetail">
+    insert into b_userdetail_tc (userid, sex, signature, 
+      age, constellation, provinces, 
+      cities, county, town, 
+      adderss, level, headportrait, 
+      identity, integral, pictureframe, 
+      birthday, realname, updatetime, 
+      version, updateby)
+    values (#{userid,jdbcType=BIGINT}, #{sex,jdbcType=BIT}, #{signature,jdbcType=VARCHAR}, 
+      #{age,jdbcType=INTEGER}, #{constellation,jdbcType=VARCHAR}, #{provinces,jdbcType=VARCHAR}, 
+      #{cities,jdbcType=VARCHAR}, #{county,jdbcType=VARCHAR}, #{town,jdbcType=VARCHAR}, 
+      #{adderss,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, #{headportrait,jdbcType=VARCHAR}, 
+      #{identity,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, #{pictureframe,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{version,jdbcType=INTEGER}, #{updateby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Userdetail">
+    insert into b_userdetail_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        userid,
+      </if>
+      <if test="sex != null">
+        sex,
+      </if>
+      <if test="signature != null">
+        signature,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+      <if test="constellation != null">
+        constellation,
+      </if>
+      <if test="provinces != null">
+        provinces,
+      </if>
+      <if test="cities != null">
+        cities,
+      </if>
+      <if test="county != null">
+        county,
+      </if>
+      <if test="town != null">
+        town,
+      </if>
+      <if test="adderss != null">
+        adderss,
+      </if>
+      <if test="level != null">
+        level,
+      </if>
+      <if test="headportrait != null">
+        headportrait,
+      </if>
+      <if test="identity != null">
+        identity,
+      </if>
+      <if test="integral != null">
+        integral,
+      </if>
+      <if test="pictureframe != null">
+        pictureframe,
+      </if>
+      <if test="birthday != null">
+        birthday,
+      </if>
+      <if test="realname != null">
+        realname,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userid != null">
+        #{userid,jdbcType=BIGINT},
+      </if>
+      <if test="sex != null">
+        #{sex,jdbcType=BIT},
+      </if>
+      <if test="signature != null">
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="constellation != null">
+        #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="provinces != null">
+        #{provinces,jdbcType=VARCHAR},
+      </if>
+      <if test="cities != null">
+        #{cities,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="adderss != null">
+        #{adderss,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="pictureframe != null">
+        #{pictureframe,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Userdetail">
+    update b_userdetail_tc
+    <set>
+      <if test="sex != null">
+        sex = #{sex,jdbcType=BIT},
+      </if>
+      <if test="signature != null">
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="constellation != null">
+        constellation = #{constellation,jdbcType=VARCHAR},
+      </if>
+      <if test="provinces != null">
+        provinces = #{provinces,jdbcType=VARCHAR},
+      </if>
+      <if test="cities != null">
+        cities = #{cities,jdbcType=VARCHAR},
+      </if>
+      <if test="county != null">
+        county = #{county,jdbcType=VARCHAR},
+      </if>
+      <if test="town != null">
+        town = #{town,jdbcType=VARCHAR},
+      </if>
+      <if test="adderss != null">
+        adderss = #{adderss,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null">
+        level = #{level,jdbcType=VARCHAR},
+      </if>
+      <if test="headportrait != null">
+        headportrait = #{headportrait,jdbcType=VARCHAR},
+      </if>
+      <if test="identity != null">
+        identity = #{identity,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null">
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="pictureframe != null">
+        pictureframe = #{pictureframe,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null">
+        birthday = #{birthday,jdbcType=VARCHAR},
+      </if>
+      <if test="realname != null">
+        realname = #{realname,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where userid = #{userid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Userdetail">
+    update b_userdetail_tc
+    set sex = #{sex,jdbcType=BIT},
+      signature = #{signature,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      constellation = #{constellation,jdbcType=VARCHAR},
+      provinces = #{provinces,jdbcType=VARCHAR},
+      cities = #{cities,jdbcType=VARCHAR},
+      county = #{county,jdbcType=VARCHAR},
+      town = #{town,jdbcType=VARCHAR},
+      adderss = #{adderss,jdbcType=VARCHAR},
+      level = #{level,jdbcType=VARCHAR},
+      headportrait = #{headportrait,jdbcType=VARCHAR},
+      identity = #{identity,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      pictureframe = #{pictureframe,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=VARCHAR},
+      realname = #{realname,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      version = #{version,jdbcType=INTEGER},
+      updateby = #{updateby,jdbcType=VARCHAR}
+    where userid = #{userid,jdbcType=BIGINT}
+  </update>
+</mapper>

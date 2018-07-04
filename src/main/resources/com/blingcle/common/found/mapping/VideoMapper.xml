@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.VideoMapper">
+    <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Video">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="userid" jdbcType="BIGINT" property="userid"/>
+        <result column="videoname" jdbcType="VARCHAR" property="videoname"/>
+        <result column="videotype" jdbcType="VARCHAR" property="videotype"/>
+        <result column="videourl" jdbcType="VARCHAR" property="videourl"/>
+        <result column="createdate" jdbcType="TIMESTAMP" property="createdate"/>
+        <result column="isvalid" jdbcType="BIT" property="isvalid"/>
+        <result column="introduction" jdbcType="VARCHAR" property="introduction"/>
+        <result column="musicid" jdbcType="BIGINT" property="musicid"/>
+        <result column="permission" jdbcType="INTEGER" property="permission"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="videopictureurl" jdbcType="VARCHAR" property="videopictureurl"/>
+        <result column="videopicturename" jdbcType="VARCHAR" property="videopicturename"/>
+        <result column="updateby" jdbcType="VARCHAR" property="updateby"/>
+        <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime"/>
+        <result column="modificy" jdbcType="VARCHAR" property="modificy"/>
+        <result column="musicurl" jdbcType="VARCHAR" property="musicurl"/>
+        <result column="version" jdbcType="INTEGER" property="version"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="city" jdbcType="VARCHAR" property="city"/>
+        <result column="circleid" jdbcType="BIGINT" property="circleid"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, userid, videoname, videotype, videourl, createdate, isvalid, introduction, musicid, 
+    permission, status, videopictureurl, videopicturename, updateby, updatetime, modificy, 
+    musicurl, version, address, city, circleid
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from b_video_td
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_video_td
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <insert id="insert" parameterType="com.blingcle.common.found.pojo.Video">
+    insert into b_video_td (id, userid, videoname, 
+      videotype, videourl, createdate, 
+      isvalid, introduction, musicid, 
+      permission, status, videopictureurl, 
+      videopicturename, updateby, updatetime, 
+      modificy, musicurl, version, 
+      address, city, circleid
+      )
+    values (#{id,jdbcType=BIGINT}, #{userid,jdbcType=BIGINT}, #{videoname,jdbcType=VARCHAR}, 
+      #{videotype,jdbcType=VARCHAR}, #{videourl,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{isvalid,jdbcType=BIT}, #{introduction,jdbcType=VARCHAR}, #{musicid,jdbcType=BIGINT}, 
+      #{permission,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{videopictureurl,jdbcType=VARCHAR}, 
+      #{videopicturename,jdbcType=VARCHAR}, #{updateby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{modificy,jdbcType=VARCHAR}, #{musicurl,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{address,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{circleid,jdbcType=BIGINT}
+      )
+  </insert>
+    <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Video">
+        insert into b_video_td
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="userid != null">
+                userid,
+            </if>
+            <if test="videoname != null">
+                videoname,
+            </if>
+            <if test="videotype != null">
+                videotype,
+            </if>
+            <if test="videourl != null">
+                videourl,
+            </if>
+            <if test="createdate != null">
+                createdate,
+            </if>
+            <if test="isvalid != null">
+                isvalid,
+            </if>
+            <if test="introduction != null">
+                introduction,
+            </if>
+            <if test="musicid != null">
+                musicid,
+            </if>
+            <if test="permission != null">
+                permission,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="videopictureurl != null">
+                videopictureurl,
+            </if>
+            <if test="videopicturename != null">
+                videopicturename,
+            </if>
+            <if test="updateby != null">
+                updateby,
+            </if>
+            <if test="updatetime != null">
+                updatetime,
+            </if>
+            <if test="modificy != null">
+                modificy,
+            </if>
+            <if test="musicurl != null">
+                musicurl,
+            </if>
+            <if test="version != null">
+                version,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="city != null">
+                city,
+            </if>
+            <if test="circleid != null">
+                circleid,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="userid != null">
+                #{userid,jdbcType=BIGINT},
+            </if>
+            <if test="videoname != null">
+                #{videoname,jdbcType=VARCHAR},
+            </if>
+            <if test="videotype != null">
+                #{videotype,jdbcType=VARCHAR},
+            </if>
+            <if test="videourl != null">
+                #{videourl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isvalid != null">
+                #{isvalid,jdbcType=BIT},
+            </if>
+            <if test="introduction != null">
+                #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="musicid != null">
+                #{musicid,jdbcType=BIGINT},
+            </if>
+            <if test="permission != null">
+                #{permission,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videopictureurl != null">
+                #{videopictureurl,jdbcType=VARCHAR},
+            </if>
+            <if test="videopicturename != null">
+                #{videopicturename,jdbcType=VARCHAR},
+            </if>
+            <if test="updateby != null">
+                #{updateby,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificy != null">
+                #{modificy,jdbcType=VARCHAR},
+            </if>
+            <if test="musicurl != null">
+                #{musicurl,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                #{version,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="circleid != null">
+                #{circleid,jdbcType=BIGINT},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Video">
+        update b_video_td
+        <set>
+            <if test="userid != null">
+                userid = #{userid,jdbcType=BIGINT},
+            </if>
+            <if test="videoname != null">
+                videoname = #{videoname,jdbcType=VARCHAR},
+            </if>
+            <if test="videotype != null">
+                videotype = #{videotype,jdbcType=VARCHAR},
+            </if>
+            <if test="videourl != null">
+                videourl = #{videourl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdate != null">
+                createdate = #{createdate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isvalid != null">
+                isvalid = #{isvalid,jdbcType=BIT},
+            </if>
+            <if test="introduction != null">
+                introduction = #{introduction,jdbcType=VARCHAR},
+            </if>
+            <if test="musicid != null">
+                musicid = #{musicid,jdbcType=BIGINT},
+            </if>
+            <if test="permission != null">
+                permission = #{permission,jdbcType=INTEGER},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="videopictureurl != null">
+                videopictureurl = #{videopictureurl,jdbcType=VARCHAR},
+            </if>
+            <if test="videopicturename != null">
+                videopicturename = #{videopicturename,jdbcType=VARCHAR},
+            </if>
+            <if test="updateby != null">
+                updateby = #{updateby,jdbcType=VARCHAR},
+            </if>
+            <if test="updatetime != null">
+                updatetime = #{updatetime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="modificy != null">
+                modificy = #{modificy,jdbcType=VARCHAR},
+            </if>
+            <if test="musicurl != null">
+                musicurl = #{musicurl,jdbcType=VARCHAR},
+            </if>
+            <if test="version != null">
+                version = #{version,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null">
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="circleid != null">
+                circleid = #{circleid,jdbcType=BIGINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Video">
+    update b_video_td
+    set userid = #{userid,jdbcType=BIGINT},
+      videoname = #{videoname,jdbcType=VARCHAR},
+      videotype = #{videotype,jdbcType=VARCHAR},
+      videourl = #{videourl,jdbcType=VARCHAR},
+      createdate = #{createdate,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=BIT},
+      introduction = #{introduction,jdbcType=VARCHAR},
+      musicid = #{musicid,jdbcType=BIGINT},
+      permission = #{permission,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      videopictureurl = #{videopictureurl,jdbcType=VARCHAR},
+      videopicturename = #{videopicturename,jdbcType=VARCHAR},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      modificy = #{modificy,jdbcType=VARCHAR},
+      musicurl = #{musicurl,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      city = #{city,jdbcType=VARCHAR},
+      circleid = #{circleid,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+    <select id="findByUserid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from b_video_td
+        where userid = #{id,jdbcType=BIGINT}
+        and v.isvalid=1
+        order by createdate desc
+    </select>
+    <select id="findByPraiseid" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+
+    select
+   id, v.userid, videoname, videotype, videourl, createdate, isvalid, introduction, musicid,
+    permission, status, videopictureurl, videopicturename, updateby, updatetime, modificy,
+    musicurl, version, address, city, circleid
+    from b_praise_td p
+    LEFT JOIN b_video_td v on p.videoid=v.id
+    where p.userid=#{id,jdbcType=BIGINT}
+    and v.permission='01'
+    and v.status='00'
+    and v.isvalid=1
+    order by p.createtime desc
+  </select>
+</mapper>

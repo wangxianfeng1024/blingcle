@@ -1,5 +1,7 @@
 package com.blingcle.common.core.constant;
 
+import java.util.Map;
+
 /**
  * Created by 王显锋 on 2018/6/25.
  */
@@ -23,7 +25,8 @@ public class Constants {
     //用户密码解密key
     public final static String PASSWORD_DECRYPT_KEY="123456";
 
-
+    //静态map，系统启动时注入系统参数
+    public  static Map mapforSystem;
 
 
 }

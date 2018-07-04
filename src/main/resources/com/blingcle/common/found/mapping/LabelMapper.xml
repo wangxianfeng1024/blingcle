@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blingcle.common.found.mapper.LabelMapper">
+  <resultMap id="BaseResultMap" type="com.blingcle.common.found.pojo.Label">
+    <id column="labelid" jdbcType="BIGINT" property="labelid" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="labelname" jdbcType="VARCHAR" property="labelname" />
+    <result column="count" jdbcType="BIGINT" property="count" />
+    <result column="crtatetime" jdbcType="TIMESTAMP" property="crtatetime" />
+    <result column="isvalid" jdbcType="BIT" property="isvalid" />
+    <result column="updateby" jdbcType="VARCHAR" property="updateby" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="modificy" jdbcType="VARCHAR" property="modificy" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+    <result column="createby" jdbcType="VARCHAR" property="createby" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    labelid, type, labelname, count, crtatetime, isvalid, updateby, updatetime, modificy, 
+    version, createby
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from b_label_tc
+    where labelid = #{labelid,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from b_label_tc
+    where labelid = #{labelid,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.blingcle.common.found.pojo.Label">
+    insert into b_label_tc (labelid, type, labelname, 
+      count, crtatetime, isvalid, 
+      updateby, updatetime, modificy, 
+      version, createby)
+    values (#{labelid,jdbcType=BIGINT}, #{type,jdbcType=INTEGER}, #{labelname,jdbcType=VARCHAR}, 
+      #{count,jdbcType=BIGINT}, #{crtatetime,jdbcType=TIMESTAMP}, #{isvalid,jdbcType=BIT}, 
+      #{updateby,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{modificy,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER}, #{createby,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.blingcle.common.found.pojo.Label">
+    insert into b_label_tc
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        labelid,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="labelname != null">
+        labelname,
+      </if>
+      <if test="count != null">
+        count,
+      </if>
+      <if test="crtatetime != null">
+        crtatetime,
+      </if>
+      <if test="isvalid != null">
+        isvalid,
+      </if>
+      <if test="updateby != null">
+        updateby,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+      <if test="modificy != null">
+        modificy,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+      <if test="createby != null">
+        createby,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="labelid != null">
+        #{labelid,jdbcType=BIGINT},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="labelname != null">
+        #{labelname,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        #{count,jdbcType=BIGINT},
+      </if>
+      <if test="crtatetime != null">
+        #{crtatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="updateby != null">
+        #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        #{modificy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        #{createby,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.blingcle.common.found.pojo.Label">
+    update b_label_tc
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="labelname != null">
+        labelname = #{labelname,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null">
+        count = #{count,jdbcType=BIGINT},
+      </if>
+      <if test="crtatetime != null">
+        crtatetime = #{crtatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isvalid != null">
+        isvalid = #{isvalid,jdbcType=BIT},
+      </if>
+      <if test="updateby != null">
+        updateby = #{updateby,jdbcType=VARCHAR},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modificy != null">
+        modificy = #{modificy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createby != null">
+        createby = #{createby,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where labelid = #{labelid,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.Label">
+    update b_label_tc
+    set type = #{type,jdbcType=INTEGER},
+      labelname = #{labelname,jdbcType=VARCHAR},
+      count = #{count,jdbcType=BIGINT},
+      crtatetime = #{crtatetime,jdbcType=TIMESTAMP},
+      isvalid = #{isvalid,jdbcType=BIT},
+      updateby = #{updateby,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      modificy = #{modificy,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      createby = #{createby,jdbcType=VARCHAR}
+    where labelid = #{labelid,jdbcType=BIGINT}
+  </update>
+</mapper>
