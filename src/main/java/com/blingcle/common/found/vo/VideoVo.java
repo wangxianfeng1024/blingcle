@@ -19,9 +19,9 @@ public class VideoVo {
 
     private String videourl;
 
-    private Date createdate=new Date();
+    private Date createdate;
 
-    private Boolean isvalid =true;
+    private Boolean isvalid ;
 
     private String introduction;
 
@@ -43,7 +43,7 @@ public class VideoVo {
 
     private String musicurl;
 
-    private Integer version =0;
+    private Integer version ;
 
     private String address;
 
@@ -219,5 +219,13 @@ public class VideoVo {
 
     public void setCircleid(Long circleid) {
         this.circleid = circleid;
+    }
+
+    public List<Videolabel> getVideolabel() {
+        return videolabel;
+    }
+
+    public void setVideolabel(List<Videolabel> videolabel) {
+        this.videolabel = videolabel;
     }
 }

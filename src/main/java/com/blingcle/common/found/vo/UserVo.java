@@ -20,25 +20,25 @@ public class UserVo {
 
     private Date lastupdate;
 
-    private Boolean isrealname = false;
+    private Boolean isrealname;
 
-    private Integer type = 0;
+    private Integer type;
 
-    private Date createdate = new Date();
+    private Date createdate ;
 
     private String loginname;
 
-    private Date fristlogintime = new Date();
+    private Date fristlogintime ;
 
     private Date lastlogintime;
 
     private String lastloginfacility;
 
-    private Boolean isprime = false;
+    private Boolean isprime ;
 
-    private Integer version = 0;
+    private Integer version;
 
-    private Integer status = 00;
+    private Integer status;
 
     private String updateby;
 

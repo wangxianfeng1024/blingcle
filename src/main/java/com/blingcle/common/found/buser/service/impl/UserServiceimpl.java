@@ -22,6 +22,7 @@ import org.springframework.util.ObjectUtils;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import java.util.Date;
 
 /**
  * Created by 王显锋 on 2018/7/4.
@@ -53,7 +54,8 @@ public class UserServiceimpl implements UserService {
         if (!ObjectUtils.isEmpty(userMapper.findbyphone(userVo.getPhone()))) {
             throw new BusinessException("用户已存在！");
         }
-        userMapper.insert(userVo);
+
+        userMapper.insert( defaultval (userVo));
         Userdetail userdetail = new Userdetail();
         userdetail.setUserid(userVo.getId());
         userdetailMapper.insert(userdetail);
@@ -109,6 +111,18 @@ public class UserServiceimpl implements UserService {
         userMapper.updateByPrimaryKey(userVo);
         userdetailMapper.updateByPrimaryKey(userVo.getUserdetail());
         userVo = userMapper.queryBuserDatail(userVo.getId());
+        return userVo;
+    }
+
+    protected UserVo defaultval(UserVo userVo)throws BusinessException {
+        userVo.setCreatedate(new Date());
+        userVo.setStatus(0);
+        userVo.setVersion(0);
+        userVo.setIsvalid(true);
+        userVo.setFristlogintime(new Date());
+        userVo.setIsrealname(false);
+        userVo.setType(0);
+        userVo.setIsprime(false);
         return userVo;
     }
 }
