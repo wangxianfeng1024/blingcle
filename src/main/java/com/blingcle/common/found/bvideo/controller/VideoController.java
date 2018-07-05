@@ -4,7 +4,6 @@ import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
 import com.blingcle.common.found.vo.VideoVo;
-import com.blingcle.common.found.bvideo.service.VideoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
