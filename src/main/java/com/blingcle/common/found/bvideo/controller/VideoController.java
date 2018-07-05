@@ -3,6 +3,7 @@ package com.blingcle.common.found.bvideo.controller;
 import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
+import com.blingcle.common.found.bvideo.service.impl.VideoService;
 import com.blingcle.common.found.vo.VideoVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

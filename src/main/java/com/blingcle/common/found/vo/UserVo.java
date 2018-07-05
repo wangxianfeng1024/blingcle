@@ -46,7 +46,7 @@ public class UserVo {
 
     private String modificy;
 
-    private Boolean isvalid = true;
+    private Boolean isvalid ;
 
     private String invitecode;
 
