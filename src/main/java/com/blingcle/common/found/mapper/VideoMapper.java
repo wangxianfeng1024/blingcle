@@ -1,6 +1,6 @@
 package com.blingcle.common.found.mapper;
 
-import com.blingcle.common.found.buser.vo.VideoVo;
+import com.blingcle.common.found.vo.VideoVo;
 import com.blingcle.common.found.pojo.Video;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public interface VideoMapper {
     int deleteByPrimaryKey(Long id);
 
-    int insert(Video record);
+    int insert(VideoVo videoVo);
 
     int insertSelective(Video record);
 

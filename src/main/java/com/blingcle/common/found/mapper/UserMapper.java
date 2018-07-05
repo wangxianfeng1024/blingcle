@@ -1,6 +1,6 @@
 package com.blingcle.common.found.mapper;
 
-import com.blingcle.common.found.buser.vo.UserVo;
+import com.blingcle.common.found.vo.UserVo;
 import com.blingcle.common.found.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -18,7 +18,7 @@ public interface UserMapper {
 
     int updateByPrimaryKeySelective(User record);
 
-    int updateByPrimaryKey(User record);
+    int updateByPrimaryKey(UserVo record);
 
     UserVo findbyphone(String phone);
 
@@ -28,5 +28,6 @@ public interface UserMapper {
 
     List<UserVo> findFans(Long id);
 
+    UserVo queryBuserDatail(Long id);
 
 }

@@ -13,7 +13,7 @@ spring:
 ##服务器配置
 server:
   context-path: /blingcle
-  port: 8082
+  port: 8081
   session:
     timeout: 1800
 mybatis:

@@ -263,7 +263,7 @@
       birthday = #{birthday,jdbcType=VARCHAR},
       realname = #{realname,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
-      version = #{version,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER}+1,
       updateby = #{updateby,jdbcType=VARCHAR}
     where userid = #{userid,jdbcType=BIGINT}
   </update>

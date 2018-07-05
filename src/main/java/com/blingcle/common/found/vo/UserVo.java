@@ -1,7 +1,6 @@
-package com.blingcle.common.found.buser.vo;
+package com.blingcle.common.found.vo;
 
 import com.blingcle.common.found.pojo.Userdetail;
-import com.blingcle.common.found.pojo.Video;
 import com.github.pagehelper.PageInfo;
 
 import java.util.Date;
@@ -23,7 +22,7 @@ public class UserVo {
 
     private Boolean isrealname = false;
 
-    private Integer type = 00;
+    private Integer type = 0;
 
     private Date createdate = new Date();
 
@@ -57,7 +56,7 @@ public class UserVo {
 
     private String logintype;
 
-    private Userdetail buserdetailtc;//用户详情
+    private Userdetail userdetail;//用户详情
 
     private List<UserVo> fans;   //粉丝
 
@@ -251,12 +250,12 @@ public class UserVo {
         this.registerinvitecode = registerinvitecode;
     }
 
-    public Userdetail getBuserdetailtc() {
-        return buserdetailtc;
+    public Userdetail getUserdetail() {
+        return userdetail;
     }
 
-    public void setBuserdetailtc(Userdetail buserdetailtc) {
-        this.buserdetailtc = buserdetailtc;
+    public void setUserdetail(Userdetail userdetail) {
+        this.userdetail = userdetail;
     }
 
     public List<UserVo> getFans() {

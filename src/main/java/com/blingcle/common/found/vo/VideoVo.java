@@ -1,6 +1,9 @@
-package com.blingcle.common.found.buser.vo;
+package com.blingcle.common.found.vo;
+
+import com.blingcle.common.found.pojo.Videolabel;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by 王显锋 on 2018/7/4.
@@ -16,9 +19,9 @@ public class VideoVo {
 
     private String videourl;
 
-    private Date createdate;
+    private Date createdate=new Date();
 
-    private Boolean isvalid;
+    private Boolean isvalid =true;
 
     private String introduction;
 
@@ -40,13 +43,15 @@ public class VideoVo {
 
     private String musicurl;
 
-    private Integer version;
+    private Integer version =0;
 
     private String address;
 
     private String city;
 
     private Long circleid;
+
+    private List<Videolabel> videolabel;
 
     public Long getId() {
         return id;

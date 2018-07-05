@@ -5,7 +5,7 @@ import com.blingcle.common.core.constant.GlobleConstant;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
 import com.blingcle.common.found.buser.service.UserService;
-import com.blingcle.common.found.buser.vo.UserVo;
+import com.blingcle.common.found.vo.UserVo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,7 +63,7 @@ public class UserController {
     /**
      * 用户注册
      *
-     * @param busertc
+     * @param baseList
      * @return
      * @throws BusinessException
      */
@@ -84,7 +84,7 @@ public class UserController {
     /**
      * 用户登录
      *
-     * @param busertcVo
+     * @param baseList
      * @return
      * @throws BusinessException
      */
@@ -119,16 +119,16 @@ public class UserController {
 
     /**
      * 修改用户信息
-     * @param busertc
+     * @param baseList
      * @return
      */
-//    @PostMapping(value = "/updataBusertcDetail")
-//    public Map<String,Object> updataBusertcDetail(@RequestBody   BaseList<Busertc> baseList){
-//        Map<String, Object> resultMap = new HashMap<String, Object>();
-//        Busertc busertc =  baseList.getFormbean();
-//        busertcservice.updataBusertcDatail(busertc);
-//        resultMap.put("status",Constants.RETURN_STATUS_CODE_SUCCESS);
-//        resultMap.put("data",busertc);
-//        return resultMap;
-//    }
+    @PostMapping(value = "/updateUserDetail")
+    public Map<String,Object> updateUserDetail(@RequestBody   BaseList<UserVo> baseList){
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        UserVo userVo =  baseList.getFormbean();
+        userVo= userService.updateUserDetail(userVo);
+        resultMap.put("status",Constants.RETURN_STATUS_CODE_SUCCESS);
+        resultMap.put("data",userVo);
+        return resultMap;
+    }
 }

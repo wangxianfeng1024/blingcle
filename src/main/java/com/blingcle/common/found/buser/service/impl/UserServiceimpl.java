@@ -4,11 +4,10 @@ import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.Page;
 import com.blingcle.common.found.buser.service.UserService;
-import com.blingcle.common.found.buser.vo.UserVo;
-import com.blingcle.common.found.buser.vo.VideoVo;
+import com.blingcle.common.found.vo.UserVo;
+import com.blingcle.common.found.vo.VideoVo;
 import com.blingcle.common.found.mapper.UserMapper;
 import com.blingcle.common.found.mapper.UserdetailMapper;
-import com.blingcle.common.found.mapper.UserfriendMapper;
 import com.blingcle.common.found.mapper.VideoMapper;
 import com.blingcle.common.found.pojo.Userdetail;
 import com.blingcle.common.utils.AESUtil;
@@ -38,9 +37,6 @@ public class UserServiceimpl implements UserService {
     private HttpServletRequest request;
     @Autowired
     private VideoMapper videoMapper;
-    @Autowired
-    private UserfriendMapper userfriendMapper;
-
 
     @Override
     @Transactional
@@ -107,13 +103,12 @@ public class UserServiceimpl implements UserService {
         return userVo;
     }
 
-//    @Override
-//    @Transactional
-//    public Busertc updataBusertcDatail(Busertc busertc) throws BusinessException {
-//        busertcMapper.updateByPrimaryKey(busertc);
-//        buserdetailtcMapper.updateByPrimaryKey(busertc.getBuserdetailtc());
-//        busertc = busertcMapper.queryBusertcDatail(busertc.getId());
-//        return busertc;
-//    }
-
+    @Override
+    @Transactional
+    public UserVo updateUserDetail(UserVo userVo) throws BusinessException {
+        userMapper.updateByPrimaryKey(userVo);
+        userdetailMapper.updateByPrimaryKey(userVo.getUserdetail());
+        userVo = userMapper.queryBuserDatail(userVo.getId());
+        return userVo;
+    }
 }

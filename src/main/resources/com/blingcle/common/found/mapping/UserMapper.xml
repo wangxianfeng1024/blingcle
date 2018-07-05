@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.blingcle.common.found.mapper.UserMapper">
-    <resultMap id="BaseResultMap" type="com.blingcle.common.found.buser.vo.UserVo">
+    <resultMap id="BaseResultMap" type="com.blingcle.common.found.vo.UserVo">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="lastupdate" jdbcType="TIMESTAMP" property="lastupdate"/>
         <result column="isrealname" jdbcType="BIT" property="isrealname"/>
@@ -25,10 +24,9 @@
         <result column="registerinvitecode" jdbcType="VARCHAR" property="registerinvitecode"/>
     </resultMap>
 
-    <resultMap id="BaseResult" type="com.blingcle.common.found.buser.vo.UserVo">
+    <resultMap id="BaseResult" type="com.blingcle.common.found.vo.UserVo">
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
-        <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="phone" jdbcType="VARCHAR" property="phone"/>
         <result column="lastupdate" jdbcType="TIMESTAMP" property="lastupdate"/>
         <result column="isrealname" jdbcType="BIT" property="isrealname"/>
@@ -39,7 +37,7 @@
         <result column="lastlogintime" jdbcType="TIMESTAMP" property="lastlogintime"/>
         <result column="lastloginfacility" jdbcType="VARCHAR" property="lastloginfacility"/>
         <result column="isprime" jdbcType="BIT" property="isprime"/>
-        <collection property="buserdetailtc" ofType="com.blingcle.common.found.buser.vo.UserdetailVo">
+        <collection property="userdetail" ofType="com.blingcle.common.found.pojo.Userdetail">
             <id column="userid" jdbcType="BIGINT" property="userid"/>
             <result column="sex" jdbcType="BIT" property="sex"/>
             <result column="signature" jdbcType="VARCHAR" property="signature"/>
@@ -60,7 +58,7 @@
         </collection>
     </resultMap>
     <sql id="Base_Column_List">
-    id, name, password, phone, lastupdate, isrealname, type, createdate, loginname, fristlogintime, 
+    id, name, phone, lastupdate, isrealname, type, createdate, loginname, fristlogintime,
     lastlogintime, lastloginfacility, isprime, version, status, updateby, updatetime, 
     modificy, isvalid, invitecode, registerinvitecode
   </sql>
@@ -74,7 +72,7 @@
     delete from b_user_tc
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.blingcle.common.found.buser.vo.UserVo">
+    <insert id="insert" parameterType="com.blingcle.common.found.vo.UserVo" useGeneratedKeys="true" keyProperty="id">
     insert into b_user_tc (id, name, password, 
       phone, lastupdate, isrealname, 
       type, createdate, loginname, 
@@ -291,7 +289,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.pojo.User">
+    <update id="updateByPrimaryKey" parameterType="com.blingcle.common.found.vo.UserVo">
     update b_user_tc
     set name = #{name,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -305,7 +303,7 @@
       lastlogintime = #{lastlogintime,jdbcType=TIMESTAMP},
       lastloginfacility = #{lastloginfacility,jdbcType=VARCHAR},
       isprime = #{isprime,jdbcType=BIT},
-      version = #{version,jdbcType=INTEGER},
+      version = #{version,jdbcType=INTEGER}+1,
       status = #{status,jdbcType=INTEGER},
       updateby = #{updateby,jdbcType=VARCHAR},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
@@ -323,7 +321,7 @@
         where phone = #{phone,jdbcType=VARCHAR}
     </select>
 
-    <select id="findbyloginname" parameterType="com.blingcle.common.found.buser.vo.UserVo" resultMap="BaseResultMap">
+    <select id="findbyloginname" parameterType="com.blingcle.common.found.vo.UserVo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from b_user_tc
@@ -331,47 +329,46 @@
     </select>
     <select id="findAttention" parameterType="java.lang.Long" resultMap="BaseResult">
     SELECT
-	id,
-	NAME,
-	PASSWORD,
-	phone,
-	lastupdate,
-	isrealname,
-	type,
-	createdate,
-	loginname,
-	fristlogintime,
-	lastlogintime,
-	lastloginfacility,
-	isprime,
-	version,
-	STATUS,
-	updateby,
-	updatetime,
-	modificy,
-	isvalid,
-	invitecode,
-	registerinvitecode,
-	f.userid,
-	sex,
-	signature,
-	age,
-	constellation,
-	provinces,
-	cities,
-	county,
-	town,
-	adderss,
-	LEVEL,
-	headportrait,
-	identity,
-	integral,
-	pictureframe,
-	birthday,
-	realname,
-	updatetime,
-	version,
-	updateby
+u.id,
+	u.NAME,
+	u.phone,
+	u.lastupdate,
+	u.isrealname,
+	u.type,
+	u.createdate,
+	u.loginname,
+	u.fristlogintime,
+	u.lastlogintime,
+	u.lastloginfacility,
+	u.isprime,
+	u.version,
+	u.STATUS,
+	u.updateby,
+	u.updatetime,
+	u.modificy,
+	u.isvalid,
+	u.invitecode,
+	u.registerinvitecode,
+	d.userid,
+	d.sex,
+	d.signature,
+	d.age,
+	d.constellation,
+	d.provinces,
+	d.cities,
+	d.county,
+	d.town,
+	d.adderss,
+	d.LEVEL,
+	d.headportrait,
+	d.identity,
+	d.integral,
+	d.pictureframe,
+	d.birthday,
+	d.realname,
+	d.updatetime,
+	d.version,
+	d.updateby
 FROM
 	b_userfriend_td f
 LEFT JOIN b_user_tc u ON f.userid = u.id
@@ -382,54 +379,102 @@ WHERE
     </select>
 
     <select id="findFans" parameterType="java.lang.Long" resultMap="BaseResult">
-       SELECT
-	id,
-	NAME,
-	PASSWORD,
-	phone,
-	lastupdate,
-	isrealname,
-	type,
-	createdate,
-	loginname,
-	fristlogintime,
-	lastlogintime,
-	lastloginfacility,
-	isprime,
-	version,
-	STATUS,
-	updateby,
-	updatetime,
-	modificy,
-	isvalid,
-	invitecode,
-	registerinvitecode,
-	f.userid,
-	sex,
-	signature,
-	age,
-	constellation,
-	provinces,
-	cities,
-	county,
-	town,
-	adderss,
-	LEVEL,
-	headportrait,
-	identity,
-	integral,
-	pictureframe,
-	birthday,
-	realname,
-	updatetime,
-	version,
-	updateby
+      SELECT
+	u.id,
+	u.NAME,
+	u.phone,
+	u.lastupdate,
+	u.isrealname,
+	u.type,
+	u.createdate,
+	u.loginname,
+	u.fristlogintime,
+	u.lastlogintime,
+	u.lastloginfacility,
+	u.isprime,
+	u.version,
+	u.STATUS,
+	u.updateby,
+	u.updatetime,
+	u.modificy,
+	u.isvalid,
+	u.invitecode,
+	u.registerinvitecode,
+	d.userid,
+	d.sex,
+	d.signature,
+	d.age,
+	d.constellation,
+	d.provinces,
+	d.cities,
+	d.county,
+	d.town,
+	d.adderss,
+	d.LEVEL,
+	d.headportrait,
+	d.identity,
+	d.integral,
+	d.pictureframe,
+	d.birthday,
+	d.realname,
+	d.updatetime,
+	d.version,
+	d.updateby
 FROM
 	b_userfriend_td f
 LEFT JOIN b_user_tc u ON f.userid = u.id
 LEFT JOIN b_userdetail_tc d ON f.userid = d.userid
 WHERE
-	f.fansid = #{id,jdbcType=BIGINT}
+	f.fansid =#{id,jdbcType=BIGINT}
 
+    </select>
+
+    <select id="queryBuserDatail" parameterType="java.lang.Long" resultMap="BaseResult">
+     SELECT
+	u.id,
+	u.NAME,
+	u.phone,
+	u.lastupdate,
+	u.isrealname,
+	u.type,
+	u.createdate,
+	u.loginname,
+	u.fristlogintime,
+	u.lastlogintime,
+	u.lastloginfacility,
+	u.isprime,
+	u.version,
+	u.STATUS,
+	u.updateby,
+	u.updatetime,
+	u.modificy,
+	u.isvalid,
+	u.invitecode,
+	u.registerinvitecode,
+	d.userid,
+	d.sex,
+	d.signature,
+	d.age,
+	d.constellation,
+	d.provinces,
+	d.cities,
+	d.county,
+	d.town,
+	d.adderss,
+	d. LEVEL,
+	d.headportrait,
+	d.identity,
+	d.integral,
+	d.pictureframe,
+	d.birthday,
+	d.realname,
+	d.updatetime,
+	d.version,
+	d.updateby
+FROM
+	b_user_tc u
+LEFT JOIN b_userdetail_tc d ON u.id = d.userid
+WHERE
+	id= #{id,jdbcType=BIGINT}
     </select>
 </mapper>

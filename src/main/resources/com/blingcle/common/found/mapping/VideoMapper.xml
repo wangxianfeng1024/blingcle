@@ -39,7 +39,7 @@
     delete from b_video_td
     where id = #{id,jdbcType=BIGINT}
   </delete>
-    <insert id="insert" parameterType="com.blingcle.common.found.pojo.Video">
+    <insert id="insert" parameterType="com.blingcle.common.found.vo.VideoVo" useGeneratedKeys="true" keyProperty="id" >
     insert into b_video_td (id, userid, videoname, 
       videotype, videourl, createdate, 
       isvalid, introduction, musicid, 
@@ -284,9 +284,9 @@
     <select id="findByUserid" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
-        from b_video_td
+        from b_video_td v
         where userid = #{id,jdbcType=BIGINT}
-        and v.isvalid=1
+        and v.isvalid='1'
         order by createdate desc
     </select>
     <select id="findByPraiseid" parameterType="java.lang.Long" resultMap="BaseResultMap">
