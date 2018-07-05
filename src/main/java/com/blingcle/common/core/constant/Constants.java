@@ -25,8 +25,15 @@ public class Constants {
     //用户密码解密key
     public final static String PASSWORD_DECRYPT_KEY="123456";
 
+
+    //地区省份父id
+    public final static Integer REGION_PARENTID=0;
+
     //静态map，系统启动时注入系统参数
     public  static Map mapforSystem;
+
+
+
 
 
 }

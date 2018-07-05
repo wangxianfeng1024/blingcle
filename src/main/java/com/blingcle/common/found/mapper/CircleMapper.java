@@ -3,6 +3,8 @@ package com.blingcle.common.found.mapper;
 import com.blingcle.common.found.pojo.Circle;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface CircleMapper {
     int deleteByPrimaryKey(Long id);
@@ -16,4 +18,8 @@ public interface CircleMapper {
     int updateByPrimaryKeySelective(Circle record);
 
     int updateByPrimaryKey(Circle record);
+
+    List<Circle> queryBcirclebyUser(Long id);
+
+    List<Circle> queryAllBcircle();
 }

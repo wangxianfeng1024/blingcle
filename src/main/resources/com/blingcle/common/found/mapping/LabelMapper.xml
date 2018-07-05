@@ -161,4 +161,9 @@
       createby = #{createby,jdbcType=VARCHAR}
     where labelid = #{labelid,jdbcType=BIGINT}
   </update>
+  <select id="queryallLabel" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_label_tc
+  </select>
 </mapper>

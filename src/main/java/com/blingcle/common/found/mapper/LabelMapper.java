@@ -3,6 +3,8 @@ package com.blingcle.common.found.mapper;
 import com.blingcle.common.found.pojo.Label;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface LabelMapper {
     int deleteByPrimaryKey(Long labelid);
@@ -16,4 +18,6 @@ public interface LabelMapper {
     int updateByPrimaryKeySelective(Label record);
 
     int updateByPrimaryKey(Label record);
+
+    List<Label> queryallLabel();
 }
