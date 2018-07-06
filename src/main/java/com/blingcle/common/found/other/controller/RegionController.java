@@ -29,7 +29,7 @@ public class RegionController {
     private RegionService regionService;
 
 
-    @PostMapping(value = "/queryrRegion")
+    @PostMapping(value = "/queryRegion")
     public Map<String,Object> queryrRegion(@RequestBody BaseList<RegionVo> baseList) throws BusinessException{
         Map<String, Object> resultMap = new HashMap<String, Object>();
         RegionVo regionVo= baseList.getFormbean();

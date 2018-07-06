@@ -12,7 +12,7 @@ public class Constants {
 
 
     //验证码发送状态
-    public final static String  MESSAGE_SEND_SUCCESS="0"; //提交成功
+    public final static String  MESSAGE_SEND_SUCCESS="00"; //提交成功
     public final static String  MESSAGE_SEND_ERROR="100";//提交失败
 
 
@@ -29,9 +29,10 @@ public class Constants {
     //地区省份父id
     public final static Integer REGION_PARENTID=0;
 
+
+
     //静态map，系统启动时注入系统参数
     public  static Map mapforSystem;
-
 
 
 

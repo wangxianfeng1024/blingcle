@@ -29,18 +29,36 @@ public class LabelController {
     private LabelService labelService;
 
     /**
-     *查询所有标签
+     * 查询所有标签
+     *
      * @param baseList
      * @return
      * @throws BusinessException
      */
-    @PostMapping(value = "/queryallLabel")
-    public Map<String, Object> queryallLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
+    @PostMapping(value = "/queryAllLabel")
+    public Map<String, Object> queryAllLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
         logger.info("查询表签Controller");
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        List<Label> labels = labelService.queryallLabel();
+        List<Label> labels = labelService.queryAllLabel();
         resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
         resultMap.put("data", labels);
+        return resultMap;
+    }
+
+    /**
+     * 添加表签
+     * @param baseList
+     * @return
+     * @throws BusinessException
+     */
+    @PostMapping(value = "/insertLabel")
+    public Map<String, Object> insertLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
+        logger.info("添加表签Controller");
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        Label label = baseList.getFormbean();
+        labelService.insertLabel(label);
+        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
+//        resultMap.put("data", label);
         return resultMap;
     }
 }

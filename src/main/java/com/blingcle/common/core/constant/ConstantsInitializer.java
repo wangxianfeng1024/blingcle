@@ -17,6 +17,6 @@ public class ConstantsInitializer implements CommandLineRunner{
 private ConstantsService constantsService;
     @Override
     public void run(String... args) throws Exception {
-//        constantsService.bulidmapforSystem();
+        Constants.mapforSystem = constantsService.bulidmapforSystem();
     }
 }

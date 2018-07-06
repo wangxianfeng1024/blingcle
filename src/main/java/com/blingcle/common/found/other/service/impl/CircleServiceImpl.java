@@ -33,8 +33,8 @@ public class CircleServiceImpl implements CircleService {
 
     @Override
     @Transactional
-    public List<Circle> queryAllBcircle() {
+    public List<Circle> queryAllCircle() {
         logger.info("查询所有圈子ServiceImpl");
-        return circleMapper.queryAllBcircle();
+        return circleMapper.queryAllCircle();
     }
 }

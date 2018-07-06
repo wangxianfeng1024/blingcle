@@ -56,6 +56,16 @@ public class UserVo {
 
     private String logintype;
 
+    private String newpassword;
+
+    public String getNewpassword() {
+        return newpassword;
+    }
+
+    public void setNewpassword(String newpassword) {
+        this.newpassword = newpassword;
+    }
+
     private Userdetail userdetail;//用户详情
 
     private List<UserVo> fans;   //粉丝

@@ -54,8 +54,7 @@ public class UserServiceimpl implements UserService {
         if (!ObjectUtils.isEmpty(userMapper.findbyphone(userVo.getPhone()))) {
             throw new BusinessException("用户已存在！");
         }
-
-        userMapper.insert( defaultval (userVo));
+        userMapper.insert(defaultval(userVo));
         Userdetail userdetail = new Userdetail();
         userdetail.setUserid(userVo.getId());
         userdetailMapper.insert(userdetail);
@@ -67,10 +66,9 @@ public class UserServiceimpl implements UserService {
     @Transactional
     public UserVo login(UserVo userVo) throws BusinessException {
         logger.info("用户登录ServiceImpl");
-//        Busertc busertc = null;
         if (userVo.getLogintype().equals(Constants.LOGIN_FOR_PHONE)) {
             HttpSession session = request.getSession();
-            String s = "123123";// (String) session.getAttribute(busertc.getPhone());
+            String s = (String) session.getAttribute(userVo.getPhone());
             if (!s.equals(userVo.getAuthkey())) {
                 throw new BusinessException("验证码错误！");
             }
@@ -82,6 +80,8 @@ public class UserServiceimpl implements UserService {
         }
         userVo.setPassword(AESUtil.decrypt(userVo.getPassword(), Constants.PASSWORD_DECRYPT_KEY));
         userVo = userMapper.findbyloginname(userVo);
+        userVo.setLastlogintime(new Date());
+        userMapper.updateLastlogintime(userVo);
         if (ObjectUtils.isEmpty(userVo)) {
             throw new BusinessException("用户不存在或密码错误！");
         }
@@ -89,6 +89,7 @@ public class UserServiceimpl implements UserService {
     }
 
     @Override
+    @Transactional
     public UserVo queryUserDetail(Long id) {
         UserVo userVo = userMapper.selectByPrimaryKey(id);
         if (ObjectUtils.isEmpty(userVo)) {
@@ -108,13 +109,26 @@ public class UserServiceimpl implements UserService {
     @Override
     @Transactional
     public UserVo updateUserDetail(UserVo userVo) throws BusinessException {
-        userMapper.updateByPrimaryKey(userVo);
-        userdetailMapper.updateByPrimaryKey(userVo.getUserdetail());
+        userMapper.updateByPrimaryKeySelective(userVo);
+        userdetailMapper.updateByPrimaryKeySelective(userVo.getUserdetail());
         userVo = userMapper.queryBuserDatail(userVo.getId());
         return userVo;
     }
 
-    protected UserVo defaultval(UserVo userVo)throws BusinessException {
+    @Override
+    public int changePassword(UserVo userVo) throws BusinessException {
+        if (ObjectUtils.isEmpty(userMapper.checkPassword(userVo))) {
+            throw new BusinessException("密码错误！");
+        }
+        userVo.setLastupdate(new Date());
+        int i = userMapper.updateByPrimaryKeySelective(userVo);
+        if (i < 1) {
+            throw new BusinessException("参数错误修改失败！");
+        }
+        return i;
+    }
+
+    protected UserVo defaultval(UserVo userVo) throws BusinessException {
         userVo.setCreatedate(new Date());
         userVo.setStatus(0);
         userVo.setVersion(0);

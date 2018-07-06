@@ -11,5 +11,5 @@ public interface CircleService {
 
     List<Circle> queryBcirclebyUser(Long id);
 
-    List<Circle> queryAllBcircle();
+    List<Circle> queryAllCircle();
 }

@@ -15,4 +15,6 @@ public interface UserService {
 
     UserVo updateUserDetail(UserVo userVo);
 
+    int changePassword(UserVo userVo);
+
 }

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ObjectUtils;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -23,6 +24,7 @@ public class RegionServiceImpl implements RegionService {
     private RegionMapper regionMapper;
 
     @Override
+    @Transactional
     public List<RegionVo> queryrRegion(RegionVo regionVo) {
         logger.info("查询地区ServiceImpl");
         if (ObjectUtils.isEmpty(regionVo.getId())) {

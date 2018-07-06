@@ -161,4 +161,10 @@
       version = #{version,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="queryall" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from b_systemparameter_tc
+  </select>
 </mapper>

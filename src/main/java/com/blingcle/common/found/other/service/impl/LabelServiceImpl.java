@@ -8,6 +8,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,9 +22,23 @@ public class LabelServiceImpl implements LabelService {
     private LabelMapper labelMapper;
 
     @Override
-    public List<Label> queryallLabel() {
+    @Transactional
+    public List<Label> queryAllLabel() {
         logger.info("查询所有标签ServiceImpl");
+        return labelMapper.queryAllLabel();
+    }
 
-        return labelMapper.queryallLabel();
+    @Override
+    @Transactional
+    public int insertLabel(Label label) {
+      return   labelMapper.insert(defaultval(label));
+    }
+
+    protected Label defaultval(Label label){
+        label.setIsvalid(true);
+        label.setVersion(0);
+        label.setCrtatetime(new Date());
+
+        return label;
     }
 }

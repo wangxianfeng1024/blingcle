@@ -329,7 +329,7 @@
     </select>
     <select id="findAttention" parameterType="java.lang.Long" resultMap="BaseResult">
     SELECT
-u.id,
+    u.id,
 	u.NAME,
 	u.phone,
 	u.lastupdate,
@@ -477,4 +477,18 @@ LEFT JOIN b_userdetail_tc d ON u.id = d.userid
 WHERE
 	id= #{id,jdbcType=BIGINT}
     </select>
+
+    <select id="checkPassword" parameterType="com.blingcle.common.found.vo.UserVo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from b_user_tc
+        where id = #{id,jdbcType=VARCHAR} and password = #{password,jdbcType=VARCHAR}
+    </select>
+
+    <update id="updateLastlogintime" parameterType="com.blingcle.common.found.vo.UserVo">
+        update b_user_tc
+        set
+        lastlogintime = #{lastlogintime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

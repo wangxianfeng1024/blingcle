@@ -34,7 +34,7 @@ public class CircleController {
      * @return
      * @throws BusinessException
      */
-    @PostMapping(value = "/queryBcirclebyUser")
+    @PostMapping(value = "/queryCirclebyUser")
     public Map<String, Object> queryBcirclebyUser(@RequestBody BaseList<Circle> baseList) throws BusinessException {
         logger.info("查询用户圈子Controller");
         Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -50,11 +50,11 @@ public class CircleController {
      * @return
      * @throws BusinessException
      */
-    @PostMapping(value = "/queryAllBcircl")
-    public Map<String, Object> queryAllBcircl(@RequestBody BaseList<Circle> baseList) throws BusinessException {
+    @PostMapping(value = "/queryAllCircle")
+    public Map<String, Object> queryAllCircle(@RequestBody BaseList<Circle> baseList) throws BusinessException {
         logger.info("查询所有圈子Controller");
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        List<Circle> circles = circleService.queryAllBcircle();
+        List<Circle> circles = circleService.queryAllCircle();
         resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
         resultMap.put("data", circles);
         return resultMap;

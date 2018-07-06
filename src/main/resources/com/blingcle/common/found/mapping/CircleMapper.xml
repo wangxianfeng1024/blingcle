@@ -235,15 +235,31 @@
     <select id="queryBcirclebyUser" parameterType="java.lang.Long" resultMap="BaseResultMap">
 
         SELECT
-        <include refid="Base_Column_List"/>
-        FROM
-        b_circle_tc c
-        LEFT JOIN b_usercircle_td b ON c.id = b.circleid
-        WHERE
-        b.userid =#{id,jdbcType=BIGINT}
+	c.id,
+	c.circlename,
+	c.circletype,
+	c.labels,
+	c.grade,
+	c.createtime,
+	c.creater,
+	c.STATUS,
+	c.introduction,
+	c.updateby,
+	c.updatetime,
+	c.modificy,
+	c.isvalid,
+	c.version,
+	c.badge,
+	c.permission,
+	c.integral
+FROM
+	b_circle_tc c
+LEFT JOIN b_usercircle_td b ON c.id = b.circleid
+WHERE
+	b.userid  =#{id,jdbcType=BIGINT}
     </select>
 
-    <select id="queryAllBcircle" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <select id="queryAllCircle" parameterType="java.lang.Long" resultMap="BaseResultMap">
 
         SELECT
         <include refid="Base_Column_List"/>

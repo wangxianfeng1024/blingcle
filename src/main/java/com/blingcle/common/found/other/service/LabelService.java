@@ -9,5 +9,7 @@ import java.util.List;
  */
 public interface LabelService {
 
-    List<Label> queryallLabel();
+    List<Label> queryAllLabel();
+
+    int insertLabel(Label label);
 }

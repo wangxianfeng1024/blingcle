@@ -19,5 +19,5 @@ public interface LabelMapper {
 
     int updateByPrimaryKey(Label record);
 
-    List<Label> queryallLabel();
+    List<Label> queryAllLabel();
 }

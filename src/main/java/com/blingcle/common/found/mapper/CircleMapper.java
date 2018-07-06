@@ -21,5 +21,5 @@ public interface CircleMapper {
 
     List<Circle> queryBcirclebyUser(Long id);
 
-    List<Circle> queryAllBcircle();
+    List<Circle> queryAllCircle();
 }

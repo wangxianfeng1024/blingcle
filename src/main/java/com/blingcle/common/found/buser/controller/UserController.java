@@ -6,6 +6,7 @@ import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
 import com.blingcle.common.found.buser.service.UserService;
 import com.blingcle.common.found.vo.UserVo;
+import com.blingcle.common.utils.SendUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,6 @@ public class UserController {
 
     /**
      * 发送验证码
-     *
      * @param busertc
      * @return
      * @throws BusinessException
@@ -47,8 +47,8 @@ public class UserController {
         logger.info("发送验证码Controller");
         Map<String, Object> resultMap = new HashMap<String, Object>();
         UserVo userVo = baseList.getFormbean();
-        String s = "123123";// SendAuthkey.getFourRandom();
-        String result = "0"; //SendAuthkey.sendTplSms(pusertc.getPhone(), "@1@=" + s);
+        String s = SendUtils.getFourRandom();
+        String result = SendUtils.sendMessage(userVo.getPhone(),s);
         if (!result.equals(Constants.MESSAGE_SEND_SUCCESS)) {
             resultMap.put("status", Constants.RETURN_STATUS_CODE_ERROR);
             return resultMap;
@@ -62,7 +62,6 @@ public class UserController {
 
     /**
      * 用户注册
-     *
      * @param baseList
      * @return
      * @throws BusinessException
@@ -73,7 +72,7 @@ public class UserController {
         UserVo userVo = baseList.getFormbean();
         Map<String, Object> resultMap = new HashMap<String, Object>();
         HttpSession session = request.getSession();
-         userVo= userService.register(userVo);
+        userVo = userService.register(userVo);
         session.setAttribute(GlobleConstant.B_SESSION_CODE, userVo);
         session.setMaxInactiveInterval(serverProperties.getSession().getTimeout());
         resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
@@ -83,7 +82,6 @@ public class UserController {
 
     /**
      * 用户登录
-     *
      * @param baseList
      * @return
      * @throws BusinessException
@@ -108,12 +106,12 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/queryUserDetail")
-    public Map<String,Object> queryUserDetail(@RequestBody  BaseList<UserVo> baseList){
+    public Map<String, Object> queryUserDetail(@RequestBody BaseList<UserVo> baseList) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        UserVo userVo =  baseList.getFormbean();
-        userVo= userService.queryUserDetail(baseList.getId());
-        resultMap.put("status",Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data",userVo);
+        UserVo userVo = baseList.getFormbean();
+        userVo = userService.queryUserDetail(baseList.getId());
+        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
+        resultMap.put("data", userVo);
         return resultMap;
     }
 
@@ -123,12 +121,27 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/updateUserDetail")
-    public Map<String,Object> updateUserDetail(@RequestBody   BaseList<UserVo> baseList){
+    public Map<String, Object> updateUserDetail(@RequestBody BaseList<UserVo> baseList) {
         Map<String, Object> resultMap = new HashMap<String, Object>();
-        UserVo userVo =  baseList.getFormbean();
-        userVo= userService.updateUserDetail(userVo);
-        resultMap.put("status",Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data",userVo);
+        UserVo userVo = baseList.getFormbean();
+        userVo = userService.updateUserDetail(userVo);
+        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
+        resultMap.put("data", userVo);
         return resultMap;
     }
+
+    /**
+     *修改密码
+     * @param baseList
+     * @return
+     */
+    @PostMapping(value = "/changePassword")
+    public Map<String, Object> changePassword(@RequestBody BaseList<UserVo> baseList) {
+        Map<String, Object> resultMap = new HashMap<String, Object>();
+        UserVo userVo = baseList.getFormbean();
+        userService.changePassword(userVo);
+        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
+        return resultMap;
+    }
+
 }

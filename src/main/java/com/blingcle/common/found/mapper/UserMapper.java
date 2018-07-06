@@ -16,7 +16,7 @@ public interface UserMapper {
 
     UserVo selectByPrimaryKey(Long id);
 
-    int updateByPrimaryKeySelective(User record);
+    int updateByPrimaryKeySelective(UserVo record);
 
     int updateByPrimaryKey(UserVo record);
 
@@ -29,5 +29,9 @@ public interface UserMapper {
     List<UserVo> findFans(Long id);
 
     UserVo queryBuserDatail(Long id);
+
+    UserVo checkPassword(UserVo userVo);
+
+    int updateLastlogintime(UserVo record);
 
 }
