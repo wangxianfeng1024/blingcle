@@ -1,7 +1,7 @@
 package com.blingcle.common.core.constant;
 
 
-import com.blingcle.common.core.service.ConstantsService;
+import com.blingcle.common.found.other.service.ConstantsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

@@ -1,8 +1,8 @@
-package com.blingcle.common.core.service.impl;
+package com.blingcle.common.found.other.service.impl;
 
 
-import com.blingcle.common.core.service.ConstantsService;
 import com.blingcle.common.found.mapper.SystemparameterMapper;
+import com.blingcle.common.found.other.service.ConstantsService;
 import com.blingcle.common.found.pojo.Systemparameter;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import java.util.Map;
  * Created by wangxianfeng on 2017/8/22.
  */
 @Service
-public class ConstantsServiceImpl implements ConstantsService {
+public class ConstantsServiceImpl implements ConstantsService{
     private static final Logger logger = Logger.getLogger(ConstantsServiceImpl.class);
 
     @Autowired

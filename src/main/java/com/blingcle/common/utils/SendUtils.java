@@ -1,6 +1,7 @@
 package com.blingcle.common.utils;
 
 import com.blingcle.common.core.constant.Constants;
+import com.blingcle.common.core.exception.BusinessException;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -9,6 +10,9 @@ import org.apache.http.concurrent.FutureCallback;
 import org.apache.http.impl.nio.client.CloseableHttpAsyncClient;
 import org.apache.http.impl.nio.client.HttpAsyncClients;
 import org.apache.http.message.BasicNameValuePair;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.util.ObjectUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,17 +28,26 @@ import java.util.Random;
  */
 @SuppressWarnings("all")
 public class SendUtils {
+    private static Logger logger = LoggerFactory.getLogger(SendUtils.class);
 
     public static String sendMessage(String phone, String content) {
-     Map map= Constants.mapforSystem;
+        Map map = Constants.mapforSystem;
+        if (ObjectUtils.isEmpty(map)) {
+            logger.info("mapforSystem为空，请检查系统参数配置！");
+            throw new BusinessException("验证码发送失败！");
+        }
+        String Account = null == map.get("ACCOUNT") ? "" : map.get("ACCOUNT").toString();
+        String Pwd = null == map.get("PWD") ? "" : map.get("PWD").toString();
+        String SignId = null == map.get("SIGNID") ? "" : map.get("SIGNID").toString();
+        String TemplateId = null == map.get("TEMPLATEID") ? "" : map.get("TEMPLATEID").toString();
         try {
             List<NameValuePair> formparams = new ArrayList<NameValuePair>();
-            formparams.add(new BasicNameValuePair("Account", map.get("ACCOUNT").toString()));
-            formparams.add(new BasicNameValuePair("Pwd", map.get("PWD").toString()));
-            formparams.add(new BasicNameValuePair("Content",content));
-            formparams.add(new BasicNameValuePair("SignId", map.get("SIGNID").toString()));
+            formparams.add(new BasicNameValuePair("Account", Account));
+            formparams.add(new BasicNameValuePair("Pwd", Pwd));
+            formparams.add(new BasicNameValuePair("Content", content));
+            formparams.add(new BasicNameValuePair("SignId", SignId));
             formparams.add(new BasicNameValuePair("Mobile", phone));
-            formparams.add(new BasicNameValuePair("TemplateId", map.get("TEMPLATEID").toString()));
+            formparams.add(new BasicNameValuePair("TemplateId", TemplateId));
             Post(formparams);
         } catch (Exception e) {
             // TODO Auto-generated catch block
@@ -47,14 +60,13 @@ public class SendUtils {
     public static void Post(List<NameValuePair> formparams) throws Exception {
         CloseableHttpAsyncClient httpClient = HttpAsyncClients.createDefault();
         httpClient.start();
-        HttpPost requestPost = new HttpPost(Constants.mapforSystem.get("REQUESTURL").toString());
+        String requestUrl = null == Constants.mapforSystem.get("REQUESTURL") ? "" : Constants.mapforSystem.get("REQUESTURL").toString();
+        HttpPost requestPost = new HttpPost(requestUrl);
         requestPost.setEntity(new UrlEncodedFormEntity(formparams, "utf-8"));
         httpClient.execute(requestPost, new FutureCallback<HttpResponse>() {
-
             public void failed(Exception arg0) {
                 System.out.println("Exception: " + arg0.getMessage());
             }
-
             public void completed(HttpResponse arg0) {
                 System.out.println("Response: " + arg0.getStatusLine());
                 try {
@@ -66,7 +78,6 @@ public class SendUtils {
                     e.printStackTrace();
                 }
             }
-
             public void cancelled() {
             }
         }).get();
