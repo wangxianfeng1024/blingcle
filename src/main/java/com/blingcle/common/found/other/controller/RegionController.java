@@ -1,8 +1,8 @@
 package com.blingcle.common.found.other.controller;
 
-import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
+import com.blingcle.common.core.utils.JsonUtil;
 import com.blingcle.common.found.other.service.RegionService;
 import com.blingcle.common.found.vo.RegionVo;
 import org.slf4j.Logger;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 王显锋 on 2018/7/5.
@@ -30,13 +28,10 @@ public class RegionController {
 
 
     @PostMapping(value = "/queryRegion")
-    public Map<String,Object> queryrRegion(@RequestBody BaseList<RegionVo> baseList) throws BusinessException{
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Object queryrRegion(@RequestBody BaseList<RegionVo> baseList) throws BusinessException{
         RegionVo regionVo= baseList.getFormbean();
         List<RegionVo> regionVos =regionService.queryrRegion(regionVo);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", regionVos);
-        return resultMap;
+        return JsonUtil.success(regionVos);
     }
 
 }

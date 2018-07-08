@@ -1,7 +1,7 @@
 package com.blingcle.common.commons;
 
-import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
+import com.blingcle.common.core.utils.JsonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DuplicateKeyException;
@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 /*
 *
  * Created by 王显锋 on 18/6/14.
@@ -26,8 +24,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler
     @ResponseBody
-    public Map<String, Object> defaultErrorHandler(HttpServletRequest request, Exception e) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Object defaultErrorHandler(HttpServletRequest request, Exception e) {
         e.printStackTrace();
         String error = "系统异常";
         if (e instanceof BusinessException) {
@@ -42,9 +39,7 @@ public class GlobalExceptionHandler {
             }
         }
         logger.error(error);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_ERROR);
-        resultMap.put("msg", e.getMessage());
-        return resultMap;
+        return JsonUtil.failure(e.getMessage());
 
     }
 }

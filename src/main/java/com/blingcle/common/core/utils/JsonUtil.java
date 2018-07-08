@@ -1,6 +1,8 @@
 package com.blingcle.common.core.utils;
 
 
+import com.blingcle.common.core.constant.Constants;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,22 +13,22 @@ import java.util.Map;
 
 
 public class JsonUtil {
-    private static final int SUCCESS = 200;
-    private static final int FAILURE = 404;
-    private static final String IS_SUCCESS = "isSuccess";
-    private static final String ERROR_MESSAGE = "errorMessage";
+    private static final String SUCCESS = Constants.RETURN_STATUS_CODE_SUCCESS;
+    private static final String FAILURE = Constants.RETURN_STATUS_CODE_ERROR;
+    private static final String IS_SUCCESS = "status";
+    private static final String ERROR_MESSAGE = "msg";
 
     /**
      * 请求成功
      *
-     * @param resultData
+     * @param data
      * @return
      */
-    public static Map success(Object resultData) {
+    public static Map success(Object data) {
 
         Map resultJSON = new HashMap();
 
-        resultJSON.put("data", resultData);
+        resultJSON.put("data", data);
         resultJSON.put(IS_SUCCESS, SUCCESS);
 
 //        return resultJSON.toJSONString();
@@ -42,7 +44,7 @@ public class JsonUtil {
 
         Map resultJSON = new HashMap();
 
-        resultJSON.put("data", "");
+//        resultJSON.put("data", "");
         resultJSON.put(IS_SUCCESS, SUCCESS);
 
         return resultJSON;
@@ -51,28 +53,28 @@ public class JsonUtil {
     /**
      * 请求失败
      *
-     * @param errorMessage
+     * @param msg
      * @return
      */
-    public static Map failure(String errorMessage) {
+    public static Map failure(String msg) {
 
         Map resultJSON = new HashMap();
 
         resultJSON.put(IS_SUCCESS, FAILURE);
-        resultJSON.put(ERROR_MESSAGE, errorMessage);
+        resultJSON.put(ERROR_MESSAGE, msg);
 
         return resultJSON;
 
     }
 
-    public static Map failure(String errorCode, String errorMessage) {
-
-        Map resultJSON = new HashMap();
-
-        resultJSON.put(IS_SUCCESS, errorCode);
-        resultJSON.put(ERROR_MESSAGE, errorMessage);
-
-        return resultJSON;
-
-    }
+//    public static Map failure(String errorCode, String msg) {
+//
+//        Map resultJSON = new HashMap();
+//
+//        resultJSON.put(IS_SUCCESS, errorCode);
+//        resultJSON.put(ERROR_MESSAGE, msg);
+//
+//        return resultJSON;
+//
+//    }
 }

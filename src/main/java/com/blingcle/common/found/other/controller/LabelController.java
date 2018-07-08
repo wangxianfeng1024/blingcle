@@ -1,8 +1,8 @@
 package com.blingcle.common.found.other.controller;
 
-import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
+import com.blingcle.common.core.utils.JsonUtil;
 import com.blingcle.common.found.other.service.LabelService;
 import com.blingcle.common.found.pojo.Label;
 import org.slf4j.Logger;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 王显锋 on 2018/7/5.
@@ -36,13 +34,10 @@ public class LabelController {
      * @throws BusinessException
      */
     @PostMapping(value = "/queryAllLabel")
-    public Map<String, Object> queryAllLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
+    public  Object queryAllLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
         logger.info("查询表签Controller");
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         List<Label> labels = labelService.queryAllLabel();
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", labels);
-        return resultMap;
+        return JsonUtil.success(labels);
     }
 
     /**
@@ -52,13 +47,10 @@ public class LabelController {
      * @throws BusinessException
      */
     @PostMapping(value = "/insertLabel")
-    public Map<String, Object> insertLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
+    public  Object insertLabel(@RequestBody BaseList<Label> baseList) throws BusinessException {
         logger.info("添加表签Controller");
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         Label label = baseList.getFormbean();
         labelService.insertLabel(label);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-//        resultMap.put("data", label);
-        return resultMap;
+        return JsonUtil.success(label);
     }
 }

@@ -1,8 +1,8 @@
 package com.blingcle.common.found.other.controller;
 
-import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
+import com.blingcle.common.core.utils.JsonUtil;
 import com.blingcle.common.found.other.service.CircleService;
 import com.blingcle.common.found.pojo.Circle;
 import org.slf4j.Logger;
@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by 王显锋 on 2018/7/5.
@@ -35,13 +33,10 @@ public class CircleController {
      * @throws BusinessException
      */
     @PostMapping(value = "/queryCirclebyUser")
-    public Map<String, Object> queryBcirclebyUser(@RequestBody BaseList<Circle> baseList) throws BusinessException {
+    public Object queryBcirclebyUser(@RequestBody BaseList<Circle> baseList) throws BusinessException {
         logger.info("查询用户圈子Controller");
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         List<Circle> circles = circleService.queryBcirclebyUser(baseList.getId());
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", circles);
-        return resultMap;
+        return JsonUtil.success(circles);
     }
 
     /**
@@ -51,12 +46,9 @@ public class CircleController {
      * @throws BusinessException
      */
     @PostMapping(value = "/queryAllCircle")
-    public Map<String, Object> queryAllCircle(@RequestBody BaseList<Circle> baseList) throws BusinessException {
+    public  Object queryAllCircle(@RequestBody BaseList<Circle> baseList) throws BusinessException {
         logger.info("查询所有圈子Controller");
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         List<Circle> circles = circleService.queryAllCircle();
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", circles);
-        return resultMap;
+        return JsonUtil.success(circles);
     }
 }

@@ -4,6 +4,7 @@ import com.blingcle.common.core.constant.Constants;
 import com.blingcle.common.core.constant.GlobleConstant;
 import com.blingcle.common.core.exception.BusinessException;
 import com.blingcle.common.core.utils.BaseList;
+import com.blingcle.common.core.utils.JsonUtil;
 import com.blingcle.common.found.buser.service.UserService;
 import com.blingcle.common.found.vo.UserVo;
 import com.blingcle.common.utils.SendUtils;
@@ -18,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by 王显锋 on 2018/7/4.
@@ -43,21 +42,18 @@ public class UserController {
      * @throws BusinessException
      */
     @PostMapping(value = "/getauthkey")
-    public Map<String, Object> getauthkey(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
+    public Object getauthkey(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
         logger.info("发送验证码Controller");
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         UserVo userVo = baseList.getFormbean();
         String s = SendUtils.getFourRandom();
         String result = SendUtils.sendMessage(userVo.getPhone(),s);
         if (!result.equals(Constants.MESSAGE_SEND_SUCCESS)) {
-            resultMap.put("status", Constants.RETURN_STATUS_CODE_ERROR);
-            return resultMap;
+            return JsonUtil.failure("验证码发送失败！");
         }
         HttpSession session = request.getSession();
         session.setAttribute(userVo.getPhone(), s);
         session.setMaxInactiveInterval(120);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        return resultMap;
+        return JsonUtil.success();
     }
 
     /**
@@ -67,17 +63,14 @@ public class UserController {
      * @throws BusinessException
      */
     @PostMapping(value = "/register")
-    public Map<String, Object> register(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
+    public  Object register(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
         logger.info("用户注册Controller");
         UserVo userVo = baseList.getFormbean();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         HttpSession session = request.getSession();
         userVo = userService.register(userVo);
         session.setAttribute(GlobleConstant.B_SESSION_CODE, userVo);
         session.setMaxInactiveInterval(serverProperties.getSession().getTimeout());
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", userVo);
-        return resultMap;
+        return JsonUtil.success(userVo);
     }
 
     /**
@@ -87,17 +80,14 @@ public class UserController {
      * @throws BusinessException
      */
     @PostMapping(value = "/login")
-    public Map<String, Object> login(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
+    public Object login(@RequestBody BaseList<UserVo> baseList) throws BusinessException {
         logger.info("用户登录Controller");
         UserVo userVo = baseList.getFormbean();
-        Map<String, Object> resultMap = new HashMap<String, Object>();
         HttpSession session = request.getSession();
         userVo = userService.login(userVo);
         session.setAttribute(GlobleConstant.B_SESSION_CODE, userVo);
         session.setMaxInactiveInterval(serverProperties.getSession().getTimeout());
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", userVo);
-        return resultMap;
+        return JsonUtil.success(userVo);
     }
 
     /**
@@ -106,13 +96,10 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/queryUserDetail")
-    public Map<String, Object> queryUserDetail(@RequestBody BaseList<UserVo> baseList) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Object queryUserDetail(@RequestBody BaseList<UserVo> baseList) {
         UserVo userVo = baseList.getFormbean();
         userVo = userService.queryUserDetail(baseList.getId());
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", userVo);
-        return resultMap;
+        return JsonUtil.success(userVo);
     }
 
     /**
@@ -121,13 +108,10 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/updateUserDetail")
-    public Map<String, Object> updateUserDetail(@RequestBody BaseList<UserVo> baseList) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Object updateUserDetail(@RequestBody BaseList<UserVo> baseList) {
         UserVo userVo = baseList.getFormbean();
         userVo = userService.updateUserDetail(userVo);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        resultMap.put("data", userVo);
-        return resultMap;
+        return JsonUtil.success(userVo);
     }
 
     /**
@@ -136,12 +120,10 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/changePassword")
-    public Map<String, Object> changePassword(@RequestBody BaseList<UserVo> baseList) {
-        Map<String, Object> resultMap = new HashMap<String, Object>();
+    public Object changePassword(@RequestBody BaseList<UserVo> baseList) {
         UserVo userVo = baseList.getFormbean();
         userService.changePassword(userVo);
-        resultMap.put("status", Constants.RETURN_STATUS_CODE_SUCCESS);
-        return resultMap;
+        return JsonUtil.success();
     }
 
 }
